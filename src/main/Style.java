@@ -10,11 +10,14 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.pdfbox.cos.COSName;
 
-import main.utils.DocumentPrep;
+/**
+ * This class provides helper methods
+ * @author Chidera Biringa
+ */
 
-public class OverallStyle extends DocumentPrep {
+public class Style extends Utils {
 
-	public OverallStyle(String DATA_DIR) {
+	public Style(String DATA_DIR) {
 		super(DATA_DIR);
 	}
 
@@ -25,15 +28,10 @@ public class OverallStyle extends DocumentPrep {
 			fonts.add(getPageResources().getFont(fontName).toString());
 		}
 		for (String font : fonts) {
-			validator.add(
-				StringUtils.containsIgnoreCase(font, Utils.fontsToValidate().get("PDType")) ||
-				StringUtils.containsIgnoreCase(font, Utils.fontsToValidate().get("Arial")) ||
-				StringUtils.containsIgnoreCase(font, Utils.fontsToValidate().get("TimesNewRoman")) ||
-				StringUtils.containsIgnoreCase(font, Utils.fontsToValidate().get("Garamond")) || 
-				StringUtils.containsIgnoreCase(font, Utils.fontsToValidate().get("Calibri"))
-				);
-			}
-		return validator.contains(false) ? Utils.failureMessage() : Utils.successMessage();
+			validator.add(StringUtils.containsAny(font.toLowerCase(), fontsToValidate().get("PDType"), fontsToValidate().get("arial"),
+			fontsToValidate().get("timesNewRoman"), fontsToValidate().get("garamond"), fontsToValidate().get("calibri")));
+		}
+		return validator.contains(false) ? failureMessage() : successMessage();
 	}
 
 	public void validateFontSize() { 
