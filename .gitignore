@@ -30,3 +30,9 @@ scratch.txt
 
 # Data
 data
+
+# Open NLP
+apache-opennlp-1.9.3
+
+# Model
+en-ner-person.bin

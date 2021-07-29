@@ -1,4 +1,5 @@
 package main;
+
 import main.utils.Utils;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import org.apache.pdfbox.cos.COSName;
 
 /**
  * This class provides helper methods
+ * 
  * @author Chidera Biringa
  */
 
@@ -28,15 +30,16 @@ public class Style extends Utils {
 			fonts.add(getPageResources().getFont(fontName).toString());
 		}
 		for (String font : fonts) {
-			validator.add(StringUtils.containsAny(font.toLowerCase(), fontsToValidate().get("PDType"), fontsToValidate().get("arial"),
-			fontsToValidate().get("timesNewRoman"), fontsToValidate().get("garamond"), fontsToValidate().get("calibri")));
+			validator.add(StringUtils.containsAny(font.toLowerCase(), fontsToValidate().get("PDType"),
+					fontsToValidate().get("arial"), fontsToValidate().get("timesNewRoman"),
+					fontsToValidate().get("garamond"), fontsToValidate().get("calibri")));
 		}
 		return validator.contains(false) ? failureMessage() : successMessage();
 	}
 
-	public void validateFontSize() { 
-		// TODO 
-    }
+	public void validateFontSize() {
+		// TODO
+	}
 
 	public void validateLineSpacing() {
 		// TODO
